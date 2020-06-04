@@ -16,15 +16,37 @@ router.post('/addCompany',(req, res)=>{
         if (err) return res.status(500).send("Somthing went wrong");
         return res.json({
             newCompany,
-            message: "User added successfully"
+            message: "company added successfully"
         })
     })
-})
+});
+
+router.get("/allCompanies", (req, res) => {
+
+    Company.find({}, (err, companies) => {
+        if (err) return res.status(500).send("Something went wrong in get all companies! \n" + err);
+        return res.json(companies)
+    })
+});
 
 
+router.put("/updateCompany/:companyId", (req, res) => {
+    
+    Company.findByIdAndUpdate(req.params.companyId, req.body, {new: true}, (err, company) => {
+        if (err) return res.status(500).send("Something went wrong in update company! \n" + err);
+        return res.json(company)
+    })
+});
 
 
-
+router.delete("/deleteCompany/:companyId", (req, res) => {
+    
+    Company.findByIdAndDelete(req.params.companyId, (err, company) => {
+        if (err) return res.status(500).send("Something went wrong in delete company! \n" + err);
+        if (!company) return res.status(404).send("Company not found");
+        return res.json(company)
+    })
+});
 
 
 

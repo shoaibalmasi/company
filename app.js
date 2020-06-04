@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 const bodyParser=require('body-parser')
 const mongoose=require('mongoose');
-const usersRouter=require('./routers/users');
+const employeesRouter=require('./routers/employees');
 const companiesRouter=require('./routers/companies');
 
 
@@ -23,12 +23,8 @@ app.use(bodyParser.json({
     type: 'application/vnd.api+json'
 })); 
 
-app.use('/users',usersRouter);
+app.use('/employees',employeesRouter);
 app.use('/companies', companiesRouter);
-
-
-console.log(Date.now());
-
 
 
 
