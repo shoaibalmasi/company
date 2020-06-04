@@ -4,9 +4,10 @@ const bodyParser=require('body-parser')
 const mongoose=require('mongoose');
 const employeesRouter=require('./routers/employees');
 const companiesRouter=require('./routers/companies');
+const otherInfo=require('./routers/otherInfo');
 
 
-
+// mongoose connect
 mongoose.connect(
     'mongodb://localhost:27017/companies'
 , {
@@ -15,6 +16,7 @@ mongoose.connect(
 });
 mongoose.set('useCreateIndex', true);
 
+//use body-parser
 app.use(bodyParser.urlencoded({
     'extended': 'true'
 })); 
@@ -23,8 +25,10 @@ app.use(bodyParser.json({
     type: 'application/vnd.api+json'
 })); 
 
+//use routers
 app.use('/employees',employeesRouter);
 app.use('/companies', companiesRouter);
+app.use('/info',otherInfo);
 
 
 

@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const Company=require('../models/company')
 
+//add new company
 router.post('/addCompany',(req, res)=>{
     const NEW_COMPANY= new Company({
         companyName:req.body.companyName,
@@ -21,6 +22,7 @@ router.post('/addCompany',(req, res)=>{
     })
 });
 
+//get all companies
 router.get("/allCompanies", (req, res) => {
 
     Company.find({}, (err, companies) => {
@@ -29,7 +31,7 @@ router.get("/allCompanies", (req, res) => {
     })
 });
 
-
+//update companies
 router.put("/updateCompany/:companyId", (req, res) => {
     
     Company.findByIdAndUpdate(req.params.companyId, req.body, {new: true}, (err, company) => {
@@ -38,7 +40,7 @@ router.put("/updateCompany/:companyId", (req, res) => {
     })
 });
 
-
+//delete companies
 router.delete("/deleteCompany/:companyId", (req, res) => {
     
     Company.findByIdAndDelete(req.params.companyId, (err, company) => {
@@ -47,8 +49,6 @@ router.delete("/deleteCompany/:companyId", (req, res) => {
         return res.json(company)
     })
 });
-
-
 
 
 module.exports=router;

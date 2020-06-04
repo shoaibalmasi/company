@@ -3,7 +3,7 @@ const router = express.Router();
 const Employee = require('../models/employee');
 
 
-
+// add new employee
 router.post('/addEmployee', (req, res) => {
 
     const NEW_EMPLOYEE = new Employee({
@@ -25,7 +25,7 @@ router.post('/addEmployee', (req, res) => {
     })
 })
 
-
+// get all employees
 router.get("/allEmployees", (req, res) => {
 
     Employee.find({}).populate('companyInfo').exec( (err, employees) => {
@@ -34,7 +34,7 @@ router.get("/allEmployees", (req, res) => {
     })
 });
 
-
+// update employee
 router.put("/updateEmployee/:employeeId", (req, res) => {
     
     Employee.findByIdAndUpdate(req.params.employeeId, req.body, {new: true}, (err, employee) => {
@@ -43,7 +43,7 @@ router.put("/updateEmployee/:employeeId", (req, res) => {
     })
 });
 
-
+// delete employee
 router.delete("/deleteEmployee/:employeeId", (req, res) => {
     
     Employee.findByIdAndDelete(req.params.employeeId, (err, employee) => {
