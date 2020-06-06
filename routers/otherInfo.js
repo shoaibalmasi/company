@@ -97,21 +97,4 @@ router.put('/updateAllCities', (req,res)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports=router;
